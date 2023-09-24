@@ -52,7 +52,7 @@ public class RMIResourceManager extends ResourceManager
 			Runtime.getRuntime().addShutdownHook(new Thread() {
 				public void run() {
 					try {
-						registry.unbind(s_rmiPrefix + s_serverName);
+						registry.unbind(s_rmiPrefix + s_serverName + s_service);
 						System.out.println("'" + s_serverName + "' resource manager unbound");
 					}
 					catch(Exception e) {
@@ -61,7 +61,7 @@ public class RMIResourceManager extends ResourceManager
 					}
 				}
 			});                                       
-			System.out.println("'" + s_serverName + "' resource manager server ready and bound to '" + s_rmiPrefix + s_serverName + "'");
+			System.out.println("'" + s_serverName + "' resource manager server ready and bound to '" + s_rmiPrefix + s_serverName + s_service + "'");
 		}
 		catch (Exception e) {
 			System.err.println((char)27 + "[31;1mServer exception: " + (char)27 + "[0mUncaught exception");

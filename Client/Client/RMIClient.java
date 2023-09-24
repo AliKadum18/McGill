@@ -18,7 +18,7 @@ public class RMIClient extends Client
 	private static String s_serverName = "Server";
 
 	private static String s_rmiPrefix = "group_21_";
-	private static String s_service = "flight"
+	private static String s_service = "flight";
 
 	public static void main(String args[])
 	{	

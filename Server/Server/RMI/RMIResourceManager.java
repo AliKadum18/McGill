@@ -21,12 +21,14 @@ public class RMIResourceManager extends ResourceManager
 	private static String s_serverName = "Server";
 	//TODO: ADD YOUR GROUP NUMBER TO COMPLETE
 	private static String s_rmiPrefix = "group_21_";
+	private static String s_service = "flight"
 
 	public static void main(String args[])
 	{
 		if (args.length > 0)
 		{
 			s_serverName = args[0];
+			s_service = args[1];
 		}
 			
 		// Create the RMI server entry
@@ -45,7 +47,7 @@ public class RMIResourceManager extends ResourceManager
 				l_registry = LocateRegistry.getRegistry(3021);
 			}
 			final Registry registry = l_registry;
-			registry.rebind(s_rmiPrefix + s_serverName, resourceManager);
+			registry.rebind(s_rmiPrefix + s_serverName + s_service, resourceManager);
 
 			Runtime.getRuntime().addShutdownHook(new Thread() {
 				public void run() {

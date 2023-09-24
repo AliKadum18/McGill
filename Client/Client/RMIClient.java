@@ -18,6 +18,7 @@ public class RMIClient extends Client
 	private static String s_serverName = "Server";
 
 	private static String s_rmiPrefix = "group_21_";
+	private static String s_service = "flight"
 
 	public static void main(String args[])
 	{	
@@ -29,7 +30,11 @@ public class RMIClient extends Client
 		{
 			s_serverName = args[1];
 		}
-		if (args.length > 2)
+		if(args.length > 2)
+		{
+			s_service = args[2];
+		}
+		if (args.length > 3)
 		{
 			System.err.println((char)27 + "[31;1mClient exception: " + (char)27 + "[0mUsage: java client.RMIClient [server_hostname [server_rmiobject]]");
 			System.exit(1);
@@ -65,7 +70,7 @@ public class RMIClient extends Client
 			while (true) {
 				try {
 					Registry registry = LocateRegistry.getRegistry(server, port);
-					m_resourceManager = (IResourceManager)registry.lookup(s_rmiPrefix + name);
+					m_resourceManager = (IResourceManager)registry.lookup(s_rmiPrefix + name + s_service);
 					System.out.println("Connected to '" + name + "' server [" + server + ":" + port + "/" + s_rmiPrefix + name + "]");
 					break;
 				}
